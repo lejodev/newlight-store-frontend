@@ -1,0 +1,61 @@
+.section-brands {
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    padding: 3rem 0;
+    .brands-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #444 #232526;
+        .brands-list {
+            display: flex;
+            flex-direction: row;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            min-width: 600px;
+            .brand-list-item {
+                min-width: 140px;
+                min-height: 100px;
+                background: rgba(40, 44, 52, 0.7);
+                box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+                border: 1.5px solid #333;
+                border-radius: 18px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: transform 0.25s cubic-bezier(.25,.8,.25,1), box-shadow 0.25s, border-color 0.25s;
+                backdrop-filter: blur(6px);
+                position: relative;
+                overflow: hidden;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    pointer-events: none;
+                    background: linear-gradient(120deg, #00bfff22 0%, #23252600 100%);
+                    opacity: 0.7;
+                }
+                .brand {
+                    font-weight: 700;
+                    font-size: 1.25rem;
+                    color: #e0e0e0;
+                    letter-spacing: 1px;
+                    transition: color 0.3s, text-shadow 0.3s;
+                    text-shadow: 0 2px 8px #222;
+                    z-index: 1;
+                    &:hover {
+                        color: #00bfff;
+                        text-shadow: 0 4px 16px #00bfff;
+                    }
+                }
+                &:hover {
+                    transform: scale(1.08) translateY(-4px);
+                    box-shadow: 0 8px 32px #00bfff44;
+                    border-color: #00bfff;
+                    background: rgba(40, 44, 52, 0.85);
+                }
+            }
+        }
+    }
+}

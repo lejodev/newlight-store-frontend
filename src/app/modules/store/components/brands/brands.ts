@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../../services/store';
 import { IBrand } from '../../../../shared/interfaces/brand.interface';
 import { BrandsService } from '../../services/brands/brands';
 import { Observable } from 'rxjs';

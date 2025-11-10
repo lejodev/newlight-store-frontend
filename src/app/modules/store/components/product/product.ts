@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StoreService } from '../../services/store';
 import { ProductsService } from '../../services/products/products';
 import { IProduct } from '../../../../shared/interfaces/product.interface';
 import { SHARED_MATERIAL_IMPORTS } from '../../../../shared/material/material.imports';
@@ -48,14 +47,14 @@ export class ProductComponent implements OnInit {
       next: (res) => {
         console.log('Product Details', res);
         this.product = res;
-        this.isLoading = false; // ✅ FIX 2: Stop loading on success
+        this.isLoading = false;
         console.log(this.isLoading);
         this.cdr.detectChanges()
       },
       error: (err) => {
         console.error('Error fetching product details:', err);
         this.product = null;
-        this.isLoading = false; // ✅ FIX 3: Stop loading on error
+        this.isLoading = false;
       }
     })
   }

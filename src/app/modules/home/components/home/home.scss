@@ -1,8 +1,64 @@
-.home{
-    .hero{
-        background: url('/images/construction.png');
-        background-position: center;
+.home {
+    width: 100%;
+    min-height: 100vh;
+
+    .hero {
+        height: 60vh;
+        min-height: 400px;
+        background: url('/images/solaris.png');
+        background-position: center center;
         background-repeat: no-repeat;
-        height: 130vh;
+        background-size: cover;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        background-color: #00000093;
+        background-blend-mode: overlay;
+
+        .hero-content {
+            padding: 20px;
+            color: white;
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            height: 80vh;
+            min-height: 550px;
+
+            .hero-content {
+                h1 {
+                    font-size: 2.5rem;
+                }
+
+                p {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+        @media (min-width: 1024px) {
+            height: 100vh;
+            min-height: 650px;
+
+            .hero-content {
+                h1 {
+                    font-size: 3.5rem;
+                }
+
+                p {
+                    font-size: 1.6rem;
+                }
+            }
+        }
     }
 }
