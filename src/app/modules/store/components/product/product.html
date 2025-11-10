@@ -1,0 +1,29 @@
+@if (isLoading) {
+<div style="text-align: center; padding: 20px;">
+    <mat-spinner></mat-spinner>
+    <p>Fetching product details...</p>
+</div>
+}
+
+@else {
+@if (product) {
+<div class="product-details">
+    <mat-card class="product-detail-card">
+        <mat-card-content>
+            <div class="product-detail-text">
+                <h2 class="product-detail-title">{{ product.name }}</h2>
+                <p class="product-detail-amount">Price: {{ product.price }}</p>
+                <p class="product-detail-desc">Stock: {{ product.amount }}</p>
+            </div>
+            <div class="product-detail-image"
+                [style.backgroundImage]="product.image_url ? 'url(' + product.image_url + ')' : 'none'"
+                [attr.aria-label]="product.name"></div>
+        </mat-card-content>
+    </mat-card>
+</div>
+} @else {
+<div style="text-align: center; padding: 20px;">
+    <p>Product not found or an error occurred.</p>
+</div>
+}
+}

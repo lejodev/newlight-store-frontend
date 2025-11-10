@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Http } from '../../../core/services/http/http';
+import { Http } from '../../../../core/services/http/http';
 import { Observable } from 'rxjs';
-import { IProduct } from '../../../shared/interfaces/product.interface';
+import { IBrand } from '../../../../shared/interfaces/brand.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class StoreService {
+export class BrandsService {
 
   constructor(
     private httpService: Http
   ) { }
 
-  getAllProducts(url: string): Observable<IProduct[]> {
+  getAllBrands(url: string): Observable<IBrand[]> {
     return this.httpService.get(url)
   }
-  
 
 }

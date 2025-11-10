@@ -1,0 +1,104 @@
+$color-dark-bg: #121212;
+$color-surface: #1e1e1e;
+$color-primary: #BB86FC;
+$color-text-light: #e0e0e0;
+$font-family-primary: 'Arial', sans-serif;
+$nav-height: 60px;
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $color-dark-bg;
+    color: $color-text-light;
+    font-family: $font-family-primary;
+}
+
+.page-header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: $color-surface;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    .nav-bar {
+        max-width: 1200px; 
+        margin: 0 auto;
+        height: $nav-height;
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: $color-primary;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: lighten($color-primary, 10%);
+            }
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1.5rem;
+
+            .nav-link {
+                color: $color-text-light;
+                text-decoration: none;
+                font-size: 1rem;
+                padding: 0.5rem 0.25rem;
+                position: relative;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $color-primary;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: $color-primary;
+                    transform: scaleX(0);
+                    transition: transform 0.3s ease-out;
+                }
+
+                &:hover::after {
+                    transform: scaleX(1);
+                }
+            }
+        }
+    }
+}
+
+// Media Query Nesting
+@media (max-width: 600px) {
+    .page-header {
+        .nav-bar {
+            padding: 0 1rem;
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+
+                .nav-link {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}

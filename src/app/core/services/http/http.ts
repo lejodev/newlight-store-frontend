@@ -13,15 +13,17 @@ export class Http {
   api(endpoint: string) {
     let APIURL = import.meta.env['NG_APP_APIURL'];
     console.log(APIURL);
-    
+
     const url = `${APIURL}${endpoint}`
     return url
   }
 
-  get(endpoint: string, headers?: HttpHeaders, params?: HttpParams) {
+  get<T>(endpoint: string, headers?: HttpHeaders, params?: HttpParams) {
     const url = this.api(endpoint)
     console.log(url);
-    
-    return this.http.get(url, { headers, params })
+
+    return this.http.get<T>(url, { headers, params })
   }
+
+
 }

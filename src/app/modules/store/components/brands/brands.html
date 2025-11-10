@@ -1,0 +1,14 @@
+<div class="section-brands">
+    <h1 class="title">THE BRANDS WE WORK WITH</h1>
+    <div class="brands-container">
+        <ul class="brands-list">
+            @for (brand of brands$ | async; track brand.id) {
+            <li class="brand-list-item">
+                <div class="brand">{{brand.name}}</div>
+            </li>
+            }@empty {
+            <div class="loading">Loading...</div>
+            }
+        </ul>
+    </div>
+</div>

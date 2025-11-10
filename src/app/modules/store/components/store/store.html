@@ -1,1 +1,23 @@
-<p>store works!</p>
+<div class="products">
+    <div class="products-container">
+        @for (product of products$ | async; track product.id) {
+        <mat-card class="product" (click)="selectProduct(product.id)" role="button" tabindex="0">
+            <div class="product-image"
+                [style.backgroundImage]="product.image_url ? 'url(' + product.image_url + ')' : 'none'"
+                [attr.aria-label]="product.name"></div>
+
+            <mat-card-content class="product-info">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p class="product-amount">Price: {{ product.price }}</p>
+                <p class="product-desc">Stock: {{ product.amount }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button matButton="elevated">Cart</button>
+                <button matButton="elevated">Buy</button>
+            </mat-card-actions>
+        </mat-card>
+        }@empty {
+        <div class="empty">Loading...</div>
+        }
+    </div>
+</div>
