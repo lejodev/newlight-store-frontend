@@ -4,6 +4,7 @@ import { ProductsService } from '../../services/products/products';
 import { IProduct } from '../../../../shared/interfaces/product.interface';
 import { SHARED_MATERIAL_IMPORTS } from '../../../../shared/material/material.imports';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../../shopping_cart/services/cart-service';
 
 @Component({
   selector: 'app-product',
@@ -26,7 +27,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private cartService: CartService
   ) { }
 
   getRoute() {
@@ -57,6 +59,10 @@ export class ProductComponent implements OnInit {
         this.isLoading = false;
       }
     })
+  }
+
+  AddToCart(id: number) {
+    this.cartService.addToCart({id: id, amount: 1} )
   }
 
 }

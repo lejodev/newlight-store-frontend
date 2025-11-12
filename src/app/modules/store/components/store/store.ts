@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SHARED_MATERIAL_IMPORTS } from '../../../../shared/material/material.imports';
 import { Router } from '@angular/router';
 import { ProductsService } from '../../services/products/products';
+import { CartService } from '../../../shopping_cart/services/cart-service';
 
 @Component({
   selector: 'app-store',
@@ -18,7 +19,8 @@ export class Store implements OnInit {
 
   constructor(
     private storeService: ProductsService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,11 @@ export class Store implements OnInit {
   selectProduct(id: number) {
     console.log(id);
     this.router.navigate(['product', id])
+  }
+
+  AddToCart(id: number) {
+    this.cartService.addToCart({ id: id, amount: 1 })
+    console.log(this.cartService.cartItems.length);
   }
 
 }

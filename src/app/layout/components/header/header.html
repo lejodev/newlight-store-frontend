@@ -3,7 +3,12 @@
         <a href="/" class="logo">NEWLIGHT</a>
         <ul class="nav-links">
             <li><a routerLink="/store" class="nav-link brands">Store</a></li>
-            <li><a href="cart" class="nav-link cart">Cart</a></li>
+            <li>
+                <a routerLink="/cart" class="nav-link cart" aria-label="View cart">
+                    🛒
+                    <span class="cart-badge" *ngIf="cartService.itemCount() > 0">{{ cartService.itemCount() }}</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>

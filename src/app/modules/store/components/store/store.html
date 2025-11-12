@@ -1,18 +1,20 @@
 <div class="products">
     <div class="products-container">
         @for (product of products$ | async; track product.id) {
-        <mat-card class="product" (click)="selectProduct(product.id)" role="button" tabindex="0">
-            <div class="product-image"
+        <mat-card class="product" role="button" tabindex="0">
+            <div class="product-image" (click)="selectProduct(product.id)"
                 [style.backgroundImage]="product.image_url ? 'url(' + product.image_url + ')' : 'none'"
-                [attr.aria-label]="product.name"></div>
+                [attr.aria-label]="product.name">
+            </div>
 
-            <mat-card-content class="product-info">
+            <mat-card-content class="product-info" (click)="selectProduct(product.id)">
+
                 <h3 class="product-title">{{ product.name }}</h3>
                 <p class="product-amount">Price: {{ product.price }}</p>
                 <p class="product-desc">Stock: {{ product.amount }}</p>
             </mat-card-content>
             <mat-card-actions>
-                <button matButton="elevated">Cart</button>
+                <button matButton="elevated" class="cart-button" (click)="AddToCart(product.id)">Add to Cart</button>
                 <button matButton="elevated">Buy</button>
             </mat-card-actions>
         </mat-card>
