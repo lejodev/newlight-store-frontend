@@ -1,0 +1,10 @@
+.cart {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    p {
+        font-size: 2rem;
+    }
+}
