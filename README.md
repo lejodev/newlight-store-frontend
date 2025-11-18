@@ -7,6 +7,11 @@ The backend (NestJs) is [here](https://github.com/lejodev/new-light-backend)
 
 # Tools used
 
+# Frontend
+- Angular 19
+- Angular Material
+- SCSS
+
 ## API
 - TypeScript
 - Angular 19
