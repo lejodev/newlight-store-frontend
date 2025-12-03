@@ -1,5 +1,87 @@
 <div class="cart">
-    <p>
-        This part of the website is under construction
-    </p>
+  <!-- Error banner -->
+  @if (error) {
+
+  <div class="error-banner">
+    <span>{{ error }}</span>
+    <button (click)="loadCart()" class="retry-btn">Retry</button>
+  </div>
+  }
+
+  @if (isLoading) {
+  <div class="loading-state">
+    <mat-spinner></mat-spinner>
+    <p>Loading your cart...</p>
+  </div>
+  }
+
+  @if (!isLoading && cartProducts.length > 0) {
+
+  <div class="cart-inner">
+    <div class="cart-items">
+      <h2>Shopping Cart</h2>
+      @for (product of cartProducts; track product.id) {
+
+      <div class="cart-item">
+        <div class="item-thumb"
+          [style.backgroundImage]="product.image_url ? 'url(/' + product.image_url + ')' : 'none'">
+        </div>
+        <div class="item-body">
+          <div class="item-title">{{ product.name }}</div>
+          <div class="item-meta">
+            <span class="item-sku">SKU: {{ product.id }}</span>
+            <span class="item-stock">Stock: {{ product.amount }}</span>
+          </div>
+          <div class="item-actions">
+            <div class="qty-control">
+              <button (click)="updateQuantity(product.id, getProductQuantity(product.id) - 1)"
+                [disabled]="getProductQuantity(product.id) <= 1" aria-label="Decrease quantity">
+                −
+              </button>
+              <div class="qty">{{ getProductQuantity(product.id) }}</div>
+              <button (click)="updateQuantity(product.id, getProductQuantity(product.id) + 1)"
+                aria-label="Increase quantity">
+                +
+              </button>
+            </div>
+            <button class="remove-btn" (click)="removeItem(product.id)" aria-label="Remove from cart">
+              Remove
+            </button>
+          </div>
+        </div>
+        <div class="item-price">
+          ${{ (product.price * getProductQuantity(product.id)).toFixed(2) }}
+        </div>
+      </div>
+      }
+
+    </div>
+
+    <div class="cart-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row">
+        <span>Subtotal:</span>
+        <span>${{ getTotalPrice().toFixed(2) }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping:</span>
+        <span>$0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Tax:</span>
+        <span>$0.00</span>
+      </div>
+      <div class="summary-total">
+        <span>Total:</span>
+        <span>${{ getTotalPrice().toFixed(2) }}</span>
+      </div>
+      <button class="checkout-btn">Proceed to Checkout</button>
+      <button class="clear-btn" (click)="clearCart()">Clear Cart</button>
+    </div>
+  </div>
+  }
+
+
+  @if (!isLoading && cartProducts.length === 0) {}
+  <app-empty-cart></app-empty-cart>
 </div>

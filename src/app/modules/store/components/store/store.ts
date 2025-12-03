@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../../../shared/interfaces/product.interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SHARED_MATERIAL_IMPORTS } from '../../../../shared/material/material.imports';
 import { Router } from '@angular/router';
@@ -24,10 +24,14 @@ export class Store implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.products$ = this.storeService.getAllProducts('products')
-    this.products$.subscribe(res => {
-      console.log(res);
-    })
+    this.products$ = this.storeService.getAllProducts('products').pipe(map(((products: IProduct[]) => {
+      return products.map((product: IProduct) => ({
+        ...product,
+        image_url: `images/${product.image_url}`
+      }));
+    })))
+    console.log(this.products$);
+    
   }
 
   selectProduct(id: number) {
@@ -36,8 +40,12 @@ export class Store implements OnInit {
   }
 
   AddToCart(id: number) {
-    this.cartService.addToCart({ id: id, amount: 1 })
-    console.log(this.cartService.cartItems.length);
+    try {
+      this.cartService.addToCart({ id: id, amount: 1 });
+      console.log(`Added product ${id} to cart. Total items: ${this.cartService.itemCount()}`);
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
   }
 
 }

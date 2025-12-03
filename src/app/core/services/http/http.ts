@@ -25,5 +25,10 @@ export class Http {
     return this.http.get<T>(url, { headers, params })
   }
 
+  post<T>(endpoint: string, body: any, headers?: HttpHeaders, params?: HttpParams) {
+    const url = this.api(endpoint)
+    return this.http.post<T>(url, body, { headers, params })
+  }
+
 
 }
